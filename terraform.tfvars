@@ -1,2 +1,3 @@
 # instancetype="t2.medium"
-az=["us-west-2a", "us-west-2b"]
+# my_region = us-east-2
+# az=["us-east-2a", "us-east-2b"]
