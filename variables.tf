@@ -2,7 +2,7 @@ variable "my_proxy_ip"{
     default = "100.100.1.1"
 } 
 
-variable "instancetype"{
+variable "instance_type"{
     type = string
     default = "t2.micro"
 } 

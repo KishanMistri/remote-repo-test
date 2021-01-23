@@ -1,20 +1,24 @@
+resource "aws_instance" "web_server"{
+  ami = "ami-0a36eb8fadc976275" 
+  instance_type = var.instance_type
+  #count = 1
+  tags = {
+    name = "web-server"
+  }
+}
 resource "aws_eip" "vm_eip"{
    vpc = true
+
 }
 
 output "eip" {
   value = aws_eip.vm_eip.public_ip
 }
 
-resource "aws_instance" "web_server"{
-  ami = "ami-0a36eb8fadc976275" 
-  instance_type = var.instance_type
-  name = web-server.${count.index}
-  count = 3
-}
 output "instance"{
   value = aws_instance.web_server.id
 }
+
 
 resource "aws_eip_association" "eip_assoc" {
   instance_id   = aws_instance.web_server.id
