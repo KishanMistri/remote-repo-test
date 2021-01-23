@@ -1,6 +1,6 @@
 resource "aws_instance" "web_server"{
-  ami = "ami-0a36eb8fadc976275" 
-  instance_type = var.instance_type
+  ami = var.region_ami[var.my_region] 
+  instance_type = var.instance_type[var.my_region]
   #count = 1
   tags = {
     name = "web-server"
