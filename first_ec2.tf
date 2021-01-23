@@ -1,13 +1,26 @@
-resource "aws_instance" "web_server"{
-  ami = var.region_ami[var.my_region] 
-  instance_type = var.instance_type[var.my_region]
-  #count = 1
-  tags = {
-    name = "web-server"
+locals { #this block is used to provide repetitive variables and expression (DON'T OVERUSE THIS)
+  general_tags = {
+    service_name = "Kishan-Training"
+    owner        = "Terraform-User"
   }
 }
-resource "aws_eip" "vm_eip"{
-   vpc = true
+
+resource "aws_instance" "web_server" {
+  ami           = var.region_ami[var.my_region]
+  instance_type = var.instance_type[var.my_region]
+  #count = 1
+  tags = merge(
+    local.general_tags,
+    map(
+      "Name", "web-server",
+      "Role", "UI"
+    )
+  )
+  #tags = local.general_tags
+}
+
+resource "aws_eip" "vm_eip" {
+  vpc = true
 
 }
 
@@ -15,7 +28,7 @@ output "eip" {
   value = aws_eip.vm_eip.public_ip
 }
 
-output "instance"{
+output "instance" {
   value = aws_instance.web_server.id
 }
 
@@ -26,8 +39,8 @@ resource "aws_eip_association" "eip_assoc" {
 }
 
 resource "aws_security_group" "ssh_access" {
-  name        = "KISHAN-SSH"
-  
+  name = "KISHAN-SSH"
+
   ingress {
     description = "Allowing SSH"
     from_port   = 22
@@ -76,14 +89,10 @@ resource "aws_elb_attachment" "elb_instance_attachment" {
   instance = aws_instance.web_server.id
 }
 
-output "elb-name"{
+output "elb-name" {
   value = aws_elb.web_instance_elb.id
 }
 
-output "elb-arn"{
+output "elb-arn" {
   value = aws_elb.web_instance_elb.arn
-}
-
-output "elb-instance"{
-  value = aws_elb.web_instance_elb.instances
 }
