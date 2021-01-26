@@ -36,3 +36,9 @@ variable "elb_timeout" {
   type    = number
   default = 300
 }
+
+variable "sg_ports" {
+  type        = list(number)
+  description = "List of ingress port which are allowed"
+  default     = [8200, 9100, 8500, 3389, 443, 80]
+}
