@@ -1,6 +1,6 @@
 variable "my_proxy_ip" {
   type    = string
-  default = "100.100.1.1"
+  default = "0.0.0.0"
 }
 
 variable "my_region" {
@@ -41,4 +41,12 @@ variable "sg_ports" {
   type        = list(number)
   description = "List of ingress port which are allowed"
   default     = [8200, 9100, 8500, 3389, 443, 80]
+}
+
+variable "webserver_keypair" {
+  default = "webserver_keypair"
+}
+
+variable "webserver_keypair_localpath" {
+  default = "C:/Users/Kishan/.ssh/webserver_keypair.pem"
 }
