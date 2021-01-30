@@ -6,7 +6,7 @@ resource "aws_security_group" "ssh_access" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.my_proxy_ip}/32"]
+    cidr_blocks = ["${var.my_proxy_ip}/0"]
   }
 
   tags = {
@@ -30,6 +30,12 @@ resource "aws_security_group" "world_access" {
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
     }
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
     Name = "Others"
