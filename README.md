@@ -1,5 +1,13 @@
-# This is my test repo to practice Remote GIT, AWS & Terraform.
+=======
+# Few references to read from my list
+1: Main index: https://www.terraform.io/docs/language/index.html
 
+2: Log related troubleshooting: https://www.terraform.io/docs/cli/config/environment-variables.html
+
+3: For test prep of Terraform Associate: https://medium.com/bb-tutorials-and-thoughts/250-practice-questions-for-terraform-associate-certification-7a3ccebe6a1a
+
+Refer document and try hands-on for expression in "terraform console".
+# This is my test repo to practice Remote GIT, AWS & Terraform.
 
 # DEMO for remote
 Another Repo
